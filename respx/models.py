@@ -14,7 +14,7 @@ from typing import (
 from unittest import mock
 from warnings import warn
 
-import httpx
+from respx._compat import httpx
 
 from respx.utils import SetCookie
 

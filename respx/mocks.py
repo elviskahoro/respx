@@ -4,8 +4,7 @@ from types import MappingProxyType
 from typing import TYPE_CHECKING, ClassVar, Dict, List, Type
 from unittest import mock
 
-import httpcore
-import httpx
+from respx._compat import httpcore, httpcore_name, httpx, httpx_name
 
 from respx.patterns import parse_url
 
@@ -142,10 +141,10 @@ class Mocker(ABC):
 
 
 class HTTPXMocker(Mocker):
-    name = "httpx"
+    name = "httpx"  # registry key, regardless of the selected flavour
     targets = [
-        "httpx._client.Client",
-        "httpx._client.AsyncClient",
+        f"{httpx_name}._client.Client",
+        f"{httpx_name}._client.AsyncClient",
     ]
     target_methods = ["_transport_for_url"]
 
@@ -262,12 +261,12 @@ class AbstractRequestMocker(Mocker):
 class HTTPCoreMocker(AbstractRequestMocker):
     name = "httpcore"
     targets = [
-        "httpcore._sync.connection.HTTPConnection",
-        "httpcore._sync.connection_pool.ConnectionPool",
-        "httpcore._sync.http_proxy.HTTPProxy",
-        "httpcore._async.connection.AsyncHTTPConnection",
-        "httpcore._async.connection_pool.AsyncConnectionPool",
-        "httpcore._async.http_proxy.AsyncHTTPProxy",
+        f"{httpcore_name}._sync.connection.HTTPConnection",
+        f"{httpcore_name}._sync.connection_pool.ConnectionPool",
+        f"{httpcore_name}._sync.http_proxy.HTTPProxy",
+        f"{httpcore_name}._async.connection.AsyncHTTPConnection",
+        f"{httpcore_name}._async.connection_pool.AsyncConnectionPool",
+        f"{httpcore_name}._async.http_proxy.AsyncHTTPProxy",
     ]
     target_methods = ["handle_request", "handle_async_request"]
 

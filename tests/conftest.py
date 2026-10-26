@@ -1,4 +1,4 @@
-import httpx
+from respx._compat import httpx
 import pytest
 
 import respx

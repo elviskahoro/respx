@@ -4,8 +4,8 @@ import re
 import socket
 from unittest import mock
 
-import httpcore
-import httpx
+from respx._compat import httpcore
+from respx._compat import httpx
 import pytest
 
 import respx

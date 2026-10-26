@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and
 this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Support mocking `httpx2` (and `httpcore2`). `httpx` is used when installed, otherwise
+  `httpx2`; set `RESPX_HTTPX_PACKAGE=httpx2` to force it. Install with `respx[httpx2]`.
+
 ## [0.23.1] - 2026-04-08
 
 ### Fixed

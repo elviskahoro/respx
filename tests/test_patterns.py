@@ -2,7 +2,7 @@ import io
 import re
 from unittest.mock import ANY
 
-import httpx
+from respx._compat import httpx
 import pytest
 
 from respx.patterns import (

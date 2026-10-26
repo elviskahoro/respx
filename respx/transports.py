@@ -12,10 +12,12 @@ from typing import (
 )
 from warnings import warn
 
-import httpx
-from httpx import AsyncBaseTransport, BaseTransport
+from respx._compat import httpx
 
 from .models import PassThrough
+
+AsyncBaseTransport = httpx.AsyncBaseTransport
+BaseTransport = httpx.BaseTransport
 
 if TYPE_CHECKING:
     from .router import Router  # pragma: nocover

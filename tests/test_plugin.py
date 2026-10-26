@@ -4,7 +4,7 @@ from textwrap import dedent
 def test_respx_mock_fixture(testdir):
     testdir.makepyfile(
         """
-        import httpx
+        from respx._compat import httpx
         import pytest
 
         @pytest.fixture

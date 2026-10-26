@@ -1,6 +1,6 @@
 from typing import Any, Callable
 
-import httpx
+from respx._compat import httpx
 
 
 class TransportHandler:

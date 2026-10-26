@@ -25,7 +25,7 @@ from typing import (
 )
 from unittest.mock import ANY
 
-import httpx
+from respx._compat import httpx
 
 from respx.utils import MultiItems, decode_data
 

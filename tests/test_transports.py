@@ -1,6 +1,6 @@
 import warnings
 
-import httpx
+from respx._compat import httpx
 import pytest
 
 from respx.models import PassThrough

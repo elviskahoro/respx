@@ -1,7 +1,7 @@
 import warnings
 
-import httpcore
-import httpx
+from respx._compat import httpcore
+from respx._compat import httpx
 import pytest
 
 from respx import Route, Router

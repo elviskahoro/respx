@@ -2,8 +2,8 @@ import socket
 from contextlib import ExitStack as does_not_raise
 from unittest import mock
 
-import httpcore
-import httpx
+from respx._compat import httpcore
+from respx._compat import httpx
 import pytest
 
 import respx
@@ -452,7 +452,7 @@ async def test_assert_all_mocked(client, assert_all_mocked, raises):
 def test_add_remove_targets():
     from respx.mocks import HTTPCoreMocker
 
-    target = "httpcore._sync.connection.HTTPConnection"
+    target = f"{httpcore.__name__}._sync.connection.HTTPConnection"
     assert HTTPCoreMocker.targets.count(target) == 1
     HTTPCoreMocker.add_targets(target)
     assert HTTPCoreMocker.targets.count(target) == 1
@@ -460,8 +460,8 @@ def test_add_remove_targets():
     pre_add_count = len(HTTPCoreMocker.targets)
     try:
         HTTPCoreMocker.add_targets(
-            "httpx._transports.asgi.ASGITransport",
-            "httpx._transports.wsgi.WSGITransport",
+            f"{httpx.__name__}._transports.asgi.ASGITransport",
+            f"{httpx.__name__}._transports.wsgi.WSGITransport",
         )
         assert len(HTTPCoreMocker.targets) == pre_add_count + 2
 
@@ -469,8 +469,8 @@ def test_add_remove_targets():
         assert len(HTTPCoreMocker.targets) == pre_add_count + 2
     finally:
         HTTPCoreMocker.remove_targets(
-            "httpx._transports.asgi.ASGITransport",
-            "httpx._transports.wsgi.WSGITransport",
+            f"{httpx.__name__}._transports.asgi.ASGITransport",
+            f"{httpx.__name__}._transports.wsgi.WSGITransport",
         )
         assert len(HTTPCoreMocker.targets) == pre_add_count
 
